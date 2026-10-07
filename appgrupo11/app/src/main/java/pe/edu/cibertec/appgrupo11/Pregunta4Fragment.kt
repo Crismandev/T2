@@ -1,59 +1,90 @@
 package pe.edu.cibertec.appgrupo11
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import pe.edu.cibertec.appgrupo11.adapter.UsuarioAdapter
+import pe.edu.cibertec.appgrupo11.databinding.FragmentPregunta4Binding
+import pe.edu.cibertec.appgrupo11.model.UsuariosResponse
+import pe.edu.cibertec.appgrupo11.network.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class Pregunta4Fragment : Fragment(), View.OnClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pregunta4Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Pregunta4Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentPregunta4Binding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var usuarioAdapter: UsuarioAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPregunta4Binding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Registrar listener del botón utilizando la interfaz View.OnClickListener
+        binding.btnCargarUsuarios.setOnClickListener(this)
+
+        configurarRecyclerView()
+        obtenerUsuarios()
+    }
+
+    override fun onClick(v: View?) {
+        if (v?.id == binding.btnCargarUsuarios.id) {
+            obtenerUsuarios()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pregunta4, container, false)
+    private fun configurarRecyclerView() {
+        usuarioAdapter = UsuarioAdapter(emptyList())
+
+        binding.rvUsuarios.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = usuarioAdapter
+            setHasFixedSize(true)
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Pregunta4Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Pregunta4Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun obtenerUsuarios() {
+        RetrofitClient.usuarioApi.obtenerUsuarios().enqueue(object : Callback<UsuariosResponse> {
+            override fun onResponse(
+                call: Call<UsuariosResponse>,
+                response: Response<UsuariosResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val usuarios = response.body()?.users.orEmpty()
+                    usuarioAdapter.actualizarUsuarios(usuarios)
+                } else {
+                    mostrarError("Error al obtener los usuarios: ${response.code()}")
                 }
             }
+
+            override fun onFailure(call: Call<UsuariosResponse>, t: Throwable) {
+                mostrarError("No se pudo conectar con el servicio: ${t.message}")
+            }
+        })
+    }
+
+    private fun mostrarError(mensaje: String) {
+        if (isAdded) {
+            Toast.makeText(requireContext(), mensaje, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
