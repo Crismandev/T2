@@ -1,15 +1,14 @@
-
-package pe.edu.cibertec.appgrupo11.pregunta1
+package pe.edu.cibertec.appgrupo11
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import pe.edu.cibertec.appgrupo11.HomeActivity
 import pe.edu.cibertec.appgrupo11.databinding.ActivityPregunta1Binding
+import pe.edu.cibertec.appgrupo11.pregunta1.Usuario
 
-class Pregunta1Activity : AppCompatActivity(), View.OnClickListener {
+class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityPregunta1Binding
 

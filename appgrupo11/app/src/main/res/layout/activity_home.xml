@@ -1,28 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_dynamic">
+
+    <!-- Top App Bar Header inspired by screenshot -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        app:cardBackgroundColor="#1E293B"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp">
+
+            <!-- Avatar Image / Icon Container -->
+            <View
+                android:id="@+id/vUserAvatarBg"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_avatar_circle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Online Indicator Dot -->
+            <View
+                android:id="@+id/vStatusDot"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/bg_avatar_circle"
+                android:backgroundTint="@color/status_online"
+                app:layout_constraintBottom_toBottomOf="@id/vUserAvatarBg"
+                app:layout_constraintStart_toStartOf="@id/vUserAvatarBg" />
+
+            <ImageView
+                android:id="@+id/ivHeaderAvatarIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Avatar"
+                android:src="@drawable/ic_user_avatar"
+                app:tint="@color/lime_accent"
+                app:layout_constraintBottom_toBottomOf="@id/vUserAvatarBg"
+                app:layout_constraintEnd_toEndOf="@id/vUserAvatarBg"
+                app:layout_constraintStart_toStartOf="@id/vUserAvatarBg"
+                app:layout_constraintTop_toTopOf="@id/vUserAvatarBg" />
+
+            <TextView
+                android:id="@+id/tvHeaderGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="¡Hola!"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/vUserAvatarBg"
+                app:layout_constraintTop_toTopOf="@id/vUserAvatarBg" />
+
+            <TextView
+                android:id="@+id/tvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="GRUPO 11 - DAM I"
+                android:textColor="@color/lime_accent"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/vUserAvatarBg"
+                app:layout_constraintTop_toBottomOf="@id/tvHeaderGreeting" />
+
+            <TextView
+                android:id="@+id/tvHeaderBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_chip"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:text="CIBERTEC T2"
+                android:textColor="@color/lime_accent"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/topBar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/bottom_nav_menu"
+        android:background="#1E293B"
+        app:itemIconTint="@color/lime_accent"
+        app:itemTextColor="@color/text_main"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

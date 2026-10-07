@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/bg_gradient_dynamic"
     android:padding="20dp"
     tools:context=".Pregunta2Fragment">
 
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Consumo de Energía Eléctrica"
-        android:textColor="@color/text_main"
+        android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +39,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:hint="Consumo energético (en kWh)"
+        android:textColorHint="@color/text_sub"
+        app:boxBackgroundColor="#1E293B"
+        app:boxStrokeColor="@color/lime_accent"
+        app:hintTextColor="@color/lime_accent"
+        app:startIconDrawable="@drawable/ic_bolt_custom"
+        app:startIconTint="#F59E0B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitulo">
@@ -47,7 +53,10 @@
             android:id="@+id/etConsumo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_sub"
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -56,23 +65,26 @@
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/primary"
+        android:elevation="4dp"
         android:text="Calcular Recargo"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:cornerRadius="12dp"
+        app:cornerRadius="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilConsumo" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardResultado"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/card_bg"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="2dp"
+        app:cardBackgroundColor="#1E293B"
+        app:strokeColor="#334155"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnCalcular">
@@ -83,8 +95,8 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="Ingrese un consumo para calcular."
-            android:textColor="@color/text_main"
-            android:textSize="15sp" />
-    </androidx.cardview.widget.CardView>
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

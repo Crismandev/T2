@@ -1,7 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AppGrupo11" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AppGrupo11" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/lime_accent</item>
+        <item name="colorOnSecondary">@color/background</item>
+
+        <!-- Dark Surface & Background Defaults -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorSurface">@color/card_bg</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorSurfaceVariant">@color/card_bg</item>
+        <item name="colorOnSurfaceVariant">@color/text_sub</item>
+
+        <!-- High-Contrast Text Settings -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_sub</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/text_sub</item>
+
+        <!-- Form Control Colors -->
+        <item name="colorOutline">@color/card_stroke</item>
     </style>
 </resources>

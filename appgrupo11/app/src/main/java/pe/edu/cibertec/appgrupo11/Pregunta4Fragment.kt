@@ -43,7 +43,7 @@ class Pregunta4Fragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v?.id == binding.btnCargarUsuarios.id) {
-            obtenerUsuarios()
+            obtenerUsuarios(esRefrescoManual = true)
         }
     }
 
@@ -57,21 +57,32 @@ class Pregunta4Fragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun obtenerUsuarios() {
+    private fun obtenerUsuarios(esRefrescoManual: Boolean = false) {
+        binding.pbCargando.visibility = View.VISIBLE
+
         RetrofitClient.usuarioApi.obtenerUsuarios().enqueue(object : Callback<UsuariosResponse> {
             override fun onResponse(
                 call: Call<UsuariosResponse>,
                 response: Response<UsuariosResponse>
             ) {
+                if (isAdded) {
+                    binding.pbCargando.visibility = View.GONE
+                }
                 if (response.isSuccessful) {
                     val usuarios = response.body()?.users.orEmpty()
                     usuarioAdapter.actualizarUsuarios(usuarios)
+                    if (esRefrescoManual && isAdded) {
+                        Toast.makeText(requireContext(), "Lista de usuarios actualizada con éxito", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     mostrarError("Error al obtener los usuarios: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<UsuariosResponse>, t: Throwable) {
+                if (isAdded) {
+                    binding.pbCargando.visibility = View.GONE
+                }
                 mostrarError("No se pudo conectar con el servicio: ${t.message}")
             }
         })

@@ -1,104 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@drawable/bg_gradient_dynamic"
+    android:padding="24dp"
+    tools:context=".pregunta1.Pregunta1Activity">
 
-    <!-- Título Principal -->
+    <!-- Top Brand Container -->
+    <View
+        android:id="@+id/vBrandLogoBg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_avatar_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivBrandIcon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:contentDescription="Brand Logo"
+        android:src="@drawable/ic_user_avatar"
+        app:tint="@color/lime_accent"
+        app:layout_constraintBottom_toBottomOf="@id/vBrandLogoBg"
+        app:layout_constraintEnd_toEndOf="@id/vBrandLogoBg"
+        app:layout_constraintStart_toStartOf="@id/vBrandLogoBg"
+        app:layout_constraintTop_toTopOf="@id/vBrandLogoBg" />
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido"
-        android:textSize="32sp"
+        android:layout_marginTop="16dp"
+        android:text="AppGrupo11"
+        android:textColor="@color/white"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="?attr/colorOnSurface"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/vBrandLogoBg" />
 
-    <!-- Subtítulo -->
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inicia sesión para continuar"
-        android:textSize="16sp"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:layout_marginTop="4dp"
+        android:text="Plataforma Móvil Cibertec - T2"
+        android:textColor="@color/text_sub"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <!-- Campo de Usuario Material Design -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUsuario"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <!-- Main Card Container -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvLoginCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Identificador de usuario"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        android:layout_marginTop="28dp"
+        app:cardBackgroundColor="#1E293B"
+        app:strokeColor="#334155"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUsuario"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:padding="20dp">
 
-    <!-- Campo de Contraseña Material Design con botón para visualizar -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilContrasena"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Contraseña"
-        android:layout_marginTop="16dp"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/tilUsuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+            <!-- Usuario -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsuario"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Código de alumno"
+                android:textColorHint="@color/text_sub"
+                app:boxBackgroundColor="#1E293B"
+                app:boxStrokeColor="@color/lime_accent"
+                app:hintTextColor="@color/lime_accent"
+                app:startIconDrawable="@drawable/ic_user_avatar"
+                app:startIconTint="@color/lime_accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etContrasena"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_sub"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Botón de Ingreso Estilizado -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnIngresar"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:text="Ingresar"
-        android:textSize="16sp"
-        android:layout_marginTop="32dp"
-        app:cornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tilContrasena"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            <!-- Contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilContrasena"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="DNI (Contraseña)"
+                android:textColorHint="@color/text_sub"
+                app:boxBackgroundColor="#1E293B"
+                app:boxStrokeColor="@color/lime_accent"
+                app:hintTextColor="@color/lime_accent"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/cyan_accent"
+                app:startIconDrawable="@drawable/ic_phone_custom"
+                app:startIconTint="@color/cyan_accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilUsuario">
 
-    <!-- Panel de Debug para el Profesor (Se asume un fondo sutil translúcido para que no desentone) -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_sub"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón Ingresar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIngresar"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/primary"
+                android:text="Ingresar al Sistema"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilContrasena" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Debug Chip para el Profesor -->
     <TextView
         android:id="@+id/tvCredencialesDebug"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:padding="12dp"
-        android:background="#1A888888"
-        android:text="Credenciales de Prueba:\nI202335548 / 7890123\nI201710756 / 7654321\nI202311030 / 7098543"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_badge_chip"
+        android:padding="14dp"
+        android:text="Credenciales de Prueba:\nAdmin / 12345678  |  i201710756 / 72775974\ni202311030 / 12345678  |  i202335548 / 12345678\nI201710829 / 12345678  |  I202407865 / 12345678\ni201522893 / 12345678  |  i202506392 / 12345678"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        android:textSize="14sp"
+        android:textColor="@color/badge_text"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
