@@ -1,11 +1,10 @@
-
-package pe.edu.cibertec.appgrupo11.pregunta1
+package pe.edu.cibertec.appgrupo11
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import pe.edu.cibertec.appgrupo11.databinding.FragmentPregunta4P2Binding
 import java.util.Locale
 
@@ -97,4 +96,3 @@ class Pregunta4FragmentP2 : Fragment() {
         _binding = null
     }
 }
-
