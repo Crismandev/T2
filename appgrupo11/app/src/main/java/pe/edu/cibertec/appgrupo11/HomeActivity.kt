@@ -25,11 +25,11 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_p2 -> {
-                    replaceFragment(Pregunta4FragmentP2())
+                    replaceFragment(Pregunta2Fragment())
                     true
                 }
                 R.id.nav_p3 -> {
-                    replaceFragment(Pregunta5Fragment())
+                    replaceFragment(Pregunta3Fragment())
                     true
                 }
                 R.id.nav_p4 -> {
