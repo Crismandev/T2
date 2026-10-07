@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import pe.edu.cibertec.appgrupo11.MainActivity
+import pe.edu.cibertec.appgrupo11.HomeActivity
 import pe.edu.cibertec.appgrupo11.databinding.ActivityPregunta1Binding
 
 class Pregunta1Activity : AppCompatActivity(), View.OnClickListener {

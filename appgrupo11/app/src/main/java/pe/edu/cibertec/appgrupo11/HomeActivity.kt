@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import pe.edu.cibertec.appgrupo11.databinding.ActivityHomeBinding
+import pe.edu.cibertec.appgrupo11.pregunta5.Pregunta5Fragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_p3 -> {
-                    replaceFragment(Pregunta3Fragment())
+                    replaceFragment(Pregunta5Fragment())
                     true
                 }
                 R.id.nav_p4 -> {
