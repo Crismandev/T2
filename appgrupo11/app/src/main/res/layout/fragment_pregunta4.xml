@@ -5,38 +5,60 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+    android:background="@color/background"
+    android:padding="16dp"
     tools:context=".Pregunta4Fragment">
 
+    <!-- Header Title -->
     <TextView
         android:id="@+id/tvTituloPregunta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Consumo de API - Lista de Usuarios (Retrofit)"
-        android:textColor="#1A237E"
-        android:textSize="18sp"
+        android:text="Consumo de API - Lista de Usuarios"
+        android:textColor="@color/text_main"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnCargarUsuarios"
+    <TextView
+        android:id="@+id/tvSubtituloPregunta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Cargar / Refrescar Usuarios"
+        android:layout_marginTop="2dp"
+        android:text="Retrofit + RecyclerView + CardView"
+        android:textColor="@color/text_sub"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTituloPregunta" />
 
+    <!-- Button -->
+    <Button
+        android:id="@+id/btnCargarUsuarios"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/primary"
+        android:text="Refrescar Lista de Usuarios"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtituloPregunta" />
+
+    <!-- RecyclerView inside Card container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardUsuarios"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/card_bg"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

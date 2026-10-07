@@ -1,59 +1,67 @@
 package pe.edu.cibertec.appgrupo11
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import pe.edu.cibertec.appgrupo11.databinding.FragmentPregunta1Binding
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class Pregunta1Fragment : Fragment(), View.OnClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pregunta1Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Pregunta1Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentPregunta1Binding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPregunta1Binding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnCalcular.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        if (v?.id == binding.btnCalcular.id) {
+            calcularConsumoAgua()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pregunta1, container, false)
+    private fun calcularConsumoAgua() {
+        val consumoStr = binding.etConsumo.text.toString().trim()
+        if (consumoStr.isEmpty()) {
+            Toast.makeText(requireContext(), "Por favor ingrese el volumen consumido.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val consumo = consumoStr.toDoubleOrNull()
+        if (consumo == null || consumo < 0) {
+            Toast.makeText(requireContext(), "Ingrese un volumen válido.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (consumo <= 20.0) {
+            binding.tvResultado.text = "Consumo dentro de la asignación regular."
+        } else {
+            val exceso = consumo - 20.0
+            val recargo = 45.00 + (exceso * 8.50)
+            val recargoFormateado = String.format(Locale.US, "S/ %.2f", recargo)
+
+            binding.tvResultado.text = "Volumen consumido: ${String.format(Locale.US, "%.2f", consumo)} m³\n\n" +
+                    "Exceso: ${String.format(Locale.US, "%.2f", exceso)} m³\n\n" +
+                    "Monto total del recargo: $recargoFormateado"
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Pregunta1Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Pregunta1Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
